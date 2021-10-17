@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="JasyptEncoding" tests="1" skipped="0" failures="0" errors="0" timestamp="2021-10-16T16:05:29" hostname="DESKTOP-QCPGADO" time="0.143">
+  <properties/>
+  <testcase name="Jasypt 암호화 테스트" classname="JasyptEncoding" time="0.143"/>
+  <system-out><![CDATA[01:05:29.494 [Test worker] INFO JasyptEncoding - 암호 전 : jdbc:mysql://localhost:3306/db_spring?serverTimezone=UTC&useSLL=false
+01:05:29.498 [Test worker] INFO JasyptEncoding - 암호 후 : QyjAgeYUilgaok4cNdGNrfLv927d+zYgJG5uUvZGUW07rm7lItgr0farbmHduYiQfdxoQ2I4mmn7HVgLgbPjJFoQxeFN3+hh9mnhpsehFus=
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
