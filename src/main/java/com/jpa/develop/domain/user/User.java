@@ -5,7 +5,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
 import javax.persistence.*;
 import java.time.LocalDate;
 
@@ -33,6 +32,6 @@ public class User extends BaseTimeEntity {
     private String userPhoneNumber;
 
     @Column(name = "usr_bt_dt")
-    private LocalDate usrBirthDate;
+    private LocalDate userBirthDate;
 
 }

@@ -1,6 +1,8 @@
 package com.jpa.develop.dto.user;
 
 import com.jpa.develop.domain.user.User;
+import com.jpa.develop.validator.BirthDate;
+import com.jpa.develop.validator.PhoneNumber;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -8,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.time.LocalDate;
 
 @Getter
 @Builder
@@ -28,7 +31,11 @@ public class UserSignUpDto {
     @Size(min = 2, max = 10)
     private String userName;
 
+    @PhoneNumber
     private String userPhoneNumber;
+
+    @BirthDate
+    private LocalDate userBirthDate;
 
     public User toEntity() {
         return User.builder()
@@ -36,7 +43,9 @@ public class UserSignUpDto {
                 .userPw(userPw)
                 .userName(userName)
                 .userPhoneNumber(userPhoneNumber)
+                .userBirthDate(userBirthDate)
                 .build();
     }
+
 
 }

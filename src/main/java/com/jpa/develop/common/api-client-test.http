@@ -1,0 +1,23 @@
+POST http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+     "userId" : "graon2231",
+     "userName" : "홍근호",
+     "userPw" : "password",
+     "userPhoneNumber" : "010-7212-8121",
+     "userBirthDate" : "1994-01-01"
+}
+
+
+### 멤버 아이디 조회 서비스 테스트
+GET http://localhost:8080/api/members/exist/memberId/grayson
+
+### 멤버 핸드폰 번호 조회 서비스 테스트
+GET http://localhost:8080/api/members/exist/phone/010-7122-8114
+
+
+
+
+
+
