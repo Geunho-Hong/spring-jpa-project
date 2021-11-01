@@ -5,7 +5,6 @@ import com.jpa.develop.domain.board.BoardRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 @Slf4j
 @Service

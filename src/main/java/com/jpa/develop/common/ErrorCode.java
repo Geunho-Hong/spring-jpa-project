@@ -11,7 +11,10 @@ public enum ErrorCode {
 
     // Member
     DUPLICATE_USER_ID(400,"U001","Email is Duplication"),
-    DUPLICATE_PHONE_NUM(400,"U002","PhoneNumber is Duplication");
+    DUPLICATE_PHONE_NUM(400,"U002","PhoneNumber is Duplication"),
+
+    // Board
+    BOARD_IS_NOT_EXIST(400,"B001","Board is not exist");
 
     private final Integer status;
     private final String message;

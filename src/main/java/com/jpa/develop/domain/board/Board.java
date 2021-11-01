@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Entity(name = "tbl_board")
 @Getter
@@ -24,5 +25,24 @@ public class Board extends BaseTimeEntity {
     private String contents;
 
     private String writer;
+
+    public void update(String title, String contents) {
+        this.title = title;
+        this.contents = contents;
+        this.modifiedDate = LocalDateTime.now();
+    }
+
+    /*public void update2(String title, String contents,String writer) {
+        this.title = title;
+        this.contents = contents;
+        this.writer = writer
+        this.modifiedDate = LocalDateTime.now();
+    }*/
+
+    /*public void update2(Board updateBoard) {
+        this.title = updateBoard.getTitle();
+        this.contents = updateBoard.getContents();
+        this.modifiedDate = LocalDateTime.now();
+    }*/
 
 }

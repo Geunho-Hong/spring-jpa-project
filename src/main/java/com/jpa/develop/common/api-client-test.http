@@ -1,12 +1,20 @@
-POST http://localhost:8080/api/board/1/comment
+PUT http://localhost:8080/api/board/2
+Content-Type: application/json
+
+{
+  "title" : "변경1",
+  "contents" : "홍근호1",
+  "writer" : "password1"
+}
+
+
+###POST http://localhost:8080/api/board/1/comment
 Content-Type: application/json
 
 {
   "contents" : "테스트 댓글1",
   "writer" : "홍근호1"
 }
-
-
 
 ###POST http://localhost:8080/api/board
 Content-Type: application/json
@@ -35,3 +43,6 @@ GET http://localhost:8080/api/members/exist/memberId/grayson
 
 ### 멤버 핸드폰 번호 조회 서비스 테스트
 GET http://localhost:8080/api/members/exist/phone/010-7122-8114
+
+### 게시글 삭제 서비스 테스트
+DELETE http://localhost:8080/api/board/1

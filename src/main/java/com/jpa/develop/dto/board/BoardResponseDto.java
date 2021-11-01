@@ -21,4 +21,5 @@ public class BoardResponseDto {
                 .writer(board.getWriter())
                 .build();
     }
+
 }
