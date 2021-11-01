@@ -14,8 +14,6 @@ public class UserService {
     private final UserRepository userRepository;
 
     public User insertUser(User user) {
-        System.out.println("user = " + user.getUserId());
-        System.out.println("user = " + user.getUserBirthDate());
         validSignUpUser(user);
         return userRepository.save(user);
     }
