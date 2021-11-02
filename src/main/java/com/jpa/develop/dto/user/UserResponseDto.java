@@ -18,7 +18,7 @@ public class UserResponseDto {
 
     public static UserResponseDto toUserResponse(User user) {
         return UserResponseDto.builder()
-                .seq(user.getSeq())
+                .seq(user.getUserNo())
                 .userId(user.getUserId())
                 .userName(user.getUserName())
                 .userPhoneNumber(user.getUserPhoneNumber())

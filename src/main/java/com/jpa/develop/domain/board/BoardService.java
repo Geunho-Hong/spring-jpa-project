@@ -26,8 +26,8 @@ public class BoardService {
     @Transactional
     public Long updateBoard(final Long boardId , Board updateBoard) {
         Board board = selectBoard(boardId);
-        board.update(updateBoard.getTitle(), updateBoard.getContents());
-        return board.getSeq();
+        board.updateBoard(updateBoard.getTitle(), updateBoard.getContents());
+        return board.getBoardNo();
     }
 
     @Transactional

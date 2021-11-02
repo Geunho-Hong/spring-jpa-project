@@ -1,3 +1,5 @@
+package com.jpa.develop;
+
 import org.jasypt.encryption.pbe.StandardPBEStringEncryptor;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
@@ -24,6 +26,7 @@ public class JasyptEncoding {
     void jasyptEncoding() {
         logger.info("암호 전 : " + "jdbc:mysql://localhost:3306/db_spring?serverTimezone=UTC&useSLL=false");
         logger.info("암호 후 : " +  encryptor.encrypt("jdbc:mysql://localhost:3306/db_spring?serverTimezone=UTC&useSLL=false"));
+
     }
 
 

@@ -17,9 +17,13 @@ server:
 spring :
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: ENC(WRfYhdu4GFcckKESszMCxsOu8Axx/JCXbB/0OqYVSUGtIs4aYXUT9Zz0Ve1mMqDIoWDSmM1Du1wrxozy/Xr6c8ne0UVkb6arMFSgOBmW61s=)
-    username: ENC(VeRJkXEoSeI+0KbDKuSN4w==)
-    password : ENC(VeRJkXEoSeI+0KbDKuSN4w==)
+    #url: ENC(WRfYhdu4GFcckKESszMCxsOu8Axx/JCXbB/0OqYVSUGtIs4aYXUT9Zz0Ve1mMqDIoWDSmM1Du1wrxozy/Xr6c8ne0UVkb6arMFSgOBmW61s=)
+    #username: ENC(VeRJkXEoSeI+0KbDKuSN4w==)
+    #password : 8159
+
+    url : jdbc:mysql://localhost:3306/db_spring?serverTimezone=UTC&useSSL=false
+    username : root
+    password : root
 
   jpa:
     show-sql : true
@@ -27,7 +31,4 @@ spring :
 
     hibernate:
       ddl-auto: none
-
-
-
 

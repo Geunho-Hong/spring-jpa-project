@@ -21,7 +21,7 @@ public class UserSignUpDto {
     private Long seq;
 
     @NotEmpty(message = "유저 아이디를 입력해 주세요")
-    @Size(min = 5, max = 10)
+    @Size(min = 2, max = 10)
     private String userId;
 
     @NotEmpty(message = "유저 패스워드를 입력해 주세요")

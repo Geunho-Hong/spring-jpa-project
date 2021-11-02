@@ -15,7 +15,7 @@ public class BoardResponseDto {
 
     public static BoardResponseDto toBoardResponse(Board board) {
         return BoardResponseDto.builder()
-                .seq(board.getSeq())
+                .seq(board.getBoardNo())
                 .title(board.getTitle())
                 .contents(board.getContents())
                 .writer(board.getWriter())

@@ -1,4 +1,17 @@
-PUT http://localhost:8080/api/board/2
+POST http://localhost:8080/api/user
+Content-Type: application/json
+
+{
+  "userId" : "test",
+  "userName" : "홍근호",
+  "userPw" : "password",
+  "userPhoneNumber" : "010-7212-8121",
+  "userBirthDate" : "1994-01-01"
+}
+
+
+
+###PUT http://localhost:8080/api/board/2
 Content-Type: application/json
 
 {
@@ -25,17 +38,6 @@ Content-Type: application/json
   "writer" : "password"
 }
 
-
-### POST http://localhost:8080/api/user
-Content-Type: application/json
-
-{
-     "userId" : "graon2231",
-     "userName" : "홍근호",
-     "userPw" : "password",
-     "userPhoneNumber" : "010-7212-8121",
-     "userBirthDate" : "1994-01-01"
-}
 
 
 ### 멤버 아이디 조회 서비스 테스트

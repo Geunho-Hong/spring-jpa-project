@@ -34,7 +34,7 @@ public class BoardController {
                 .status(201)
                 .build();
 
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.status(200).body(response);
     }
 
     @PostMapping("")
@@ -77,7 +77,7 @@ public class BoardController {
                 .status(201)
                 .build();
 
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.status(200).body(response);
     }
 
     @PostMapping("/{boardId}/comment")

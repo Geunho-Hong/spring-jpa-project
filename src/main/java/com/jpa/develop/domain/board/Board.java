@@ -17,8 +17,9 @@ import java.time.LocalDateTime;
 public class Board extends BaseTimeEntity {
 
     @Id
+    @Column(name = "board_no" , nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long seq;
+    private Long boardNo;
 
     private String title;
 
@@ -26,23 +27,10 @@ public class Board extends BaseTimeEntity {
 
     private String writer;
 
-    public void update(String title, String contents) {
+    public void updateBoard(String title, String contents) {
         this.title = title;
         this.contents = contents;
         this.modifiedDate = LocalDateTime.now();
     }
-
-    /*public void update2(String title, String contents,String writer) {
-        this.title = title;
-        this.contents = contents;
-        this.writer = writer
-        this.modifiedDate = LocalDateTime.now();
-    }*/
-
-    /*public void update2(Board updateBoard) {
-        this.title = updateBoard.getTitle();
-        this.contents = updateBoard.getContents();
-        this.modifiedDate = LocalDateTime.now();
-    }*/
 
 }
