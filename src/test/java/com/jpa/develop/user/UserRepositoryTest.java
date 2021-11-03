@@ -60,7 +60,6 @@ public class UserRepositoryTest {
                 .orElseThrow(EntityNotFoundException::new);
 
         // then
-        assertThat(findUser).isEqualTo(user).isSameAs(user);
         assertThat(findUser.getUserNo()).isNotZero();
         assertThat(findUser.getUserId()).isEqualTo(user.getUserId());
         assertThat(findUser.getUserName()).isEqualTo(user.getUserName());

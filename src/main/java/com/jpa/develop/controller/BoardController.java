@@ -31,7 +31,7 @@ public class BoardController {
         ApiResponse response = ApiResponse.builder()
                 .message("게시글이 조회 되었습니다")
                 .data(BoardResponseDto.toBoardResponse(board))
-                .status(201)
+                .status(200)
                 .build();
 
         return ResponseEntity.status(200).body(response);
@@ -74,7 +74,7 @@ public class BoardController {
         ApiResponse response = ApiResponse.builder()
                 .message(boardId + " 번 글 삭제가 완료 되었습니다")
                 .data(boardId)
-                .status(201)
+                .status(200)
                 .build();
 
         return ResponseEntity.status(200).body(response);

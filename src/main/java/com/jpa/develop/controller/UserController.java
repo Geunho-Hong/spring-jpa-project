@@ -42,10 +42,10 @@ public class UserController {
         ApiResponse response = ApiResponse.builder()
                 .message(isExistUserId ? "이미 존재하는 아이디 입니다" : "사용 가능한 아이디 입니다")
                 .data(isExistUserId)
-                .status(201)
+                .status(200)
                 .build();
 
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.status(200).body(response);
     }
 
     @GetMapping("/exist/phone/{phoneNumber}")
@@ -56,10 +56,10 @@ public class UserController {
         ApiResponse response = ApiResponse.builder()
                 .message(isExistPhoneNumber ? "이미 존재하는 핸드폰 번호 입니다" : "사용 가능한 핸드폰 번호 입니다")
                 .data(isExistPhoneNumber)
-                .status(201)
+                .status(200)
                 .build();
 
-        return ResponseEntity.status(201).body(response);
+        return ResponseEntity.status(200).body(response);
     }
 
 }
