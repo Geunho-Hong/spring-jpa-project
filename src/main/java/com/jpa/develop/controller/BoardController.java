@@ -67,7 +67,7 @@ public class BoardController {
     }
 
     @DeleteMapping("/{boardId}")
-    public ResponseEntity<ApiResponse> deleteBoard(@PathVariable Long boardId) {
+    public ResponseEntity<ApiResponse> deleteBoard(@PathVariable final Long boardId) {
 
         boardService.deleteBoard(boardId);
 
@@ -82,7 +82,7 @@ public class BoardController {
 
     @PostMapping("/{boardId}/comment")
     public ResponseEntity<ApiResponse> insertComment(@Valid @RequestBody CommentInsertDto commentInsertDto,
-                                                     @PathVariable Long boardId) {
+                                                     @PathVariable final Long boardId) {
 
         Comment comment = commentService.insertComment(boardId, commentInsertDto.toEntity());
 

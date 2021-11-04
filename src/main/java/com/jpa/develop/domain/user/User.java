@@ -35,4 +35,8 @@ public class User extends BaseTimeEntity {
     @Column(name = "usr_bt_dt")
     private LocalDate userBirthDate;
 
+    public void encodingPassword(String encodingPassword) {
+        this.userPw = encodingPassword;
+    }
+
 }

@@ -31,7 +31,7 @@ public class BoardService {
     }
 
     @Transactional
-    public void deleteBoard(Long boardId) {
+    public void deleteBoard(final Long boardId) {
         boardRepository.deleteById(boardId);
     }
 
