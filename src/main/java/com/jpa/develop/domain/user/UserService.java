@@ -4,13 +4,16 @@ import com.jpa.develop.domain.user.exception.PhoneNumberDuplicateException;
 import com.jpa.develop.domain.user.exception.UserIdDuplicateException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class UserService {
+public class UserService implements UserDetailsService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -33,9 +36,26 @@ public class UserService {
     }
 
     public void existByPhoneNumber(String phoneNumber) {
-        if(userRepository.existsByUserPhoneNumber(phoneNumber)) {
+        if (userRepository.existsByUserPhoneNumber(phoneNumber)) {
             throw new PhoneNumberDuplicateException("PhoneNumber Duplicate Error");
         }
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String userId) throws UsernameNotFoundException {
+        // map 메소드를 이용하면 원하는 형태로 Optional 객체 반환 가능
+        return userRepository.findByUserId(userId)
+                .map(this::generateUserDetails)
+                .orElseThrow(() -> new UsernameNotFoundException("This User is not exist"));
+    }
+
+    private UserDetails generateUserDetails(User user) {
+
+        return User.builder()
+                .userId(user.getUserId())
+                .userPw(user.getUserPw())
+                .roles(user.getRoles())
+                .build();
     }
 
 }

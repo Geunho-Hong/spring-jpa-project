@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
+import java.util.Collections;
 
 @Getter
 @Builder
@@ -37,6 +38,7 @@ public class UserSignUpDto {
     @BirthDate
     private LocalDate userBirthDate;
 
+    // 최초 가입시 roles는 ROLE_USER 로 설정
     public User toEntity() {
         return User.builder()
                 .userId(userId)
@@ -44,6 +46,7 @@ public class UserSignUpDto {
                 .userName(userName)
                 .userPhoneNumber(userPhoneNumber)
                 .userBirthDate(userBirthDate)
+                .roles(Collections.singletonList("ROLE_USER"))
                 .build();
     }
 
