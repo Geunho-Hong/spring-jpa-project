@@ -26,7 +26,7 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleException(Exception e) {
-        log.error("Handle Exception : {} " + e.getMessage());
+        log.error("Handle Exception : {} ",e );
         ErrorResponse response = ErrorResponse.of(ErrorCode.SERVER_ERROR);
         return ResponseEntity.status(response.getStatus()).body(response);
     }

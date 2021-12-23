@@ -20,7 +20,7 @@ public class UserResponseDto {
         return UserResponseDto.builder()
                 .seq(user.getUserNo())
                 .userId(user.getUserId())
-                .userName(user.getUserName())
+                .userName(user.getUsername())
                 .userPhoneNumber(user.getUserPhoneNumber())
                 .userBirthDate(user.getUserBirthDate())
                 .build();

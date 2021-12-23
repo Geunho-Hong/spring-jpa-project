@@ -1,9 +1,12 @@
 package com.jpa.develop.controller;
 
 import com.jpa.develop.common.ApiResponse;
+import com.jpa.develop.domain.security.SecurityService;
 import com.jpa.develop.domain.user.User;
 import com.jpa.develop.domain.user.UserRepository;
 import com.jpa.develop.domain.user.UserService;
+import com.jpa.develop.dto.jwt.TokenResponseDto;
+import com.jpa.develop.dto.user.UserLoginRequestDto;
 import com.jpa.develop.dto.user.UserResponseDto;
 import com.jpa.develop.dto.user.UserSignUpDto;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +22,7 @@ public class UserController {
 
     private final UserService userService;
     private final UserRepository userRepository;
+    private final SecurityService securityService;
 
     @PostMapping("")
     public ResponseEntity<ApiResponse> insertUser(@Valid @RequestBody UserSignUpDto userSignUpDto) {
@@ -61,5 +65,21 @@ public class UserController {
 
         return ResponseEntity.status(200).body(response);
     }
+
+    @PostMapping("/login")
+    public ResponseEntity<ApiResponse> userLogin(@RequestBody UserLoginRequestDto userLoginRequestDto) {
+
+        TokenResponseDto tokenResponseDto = securityService.login(userLoginRequestDto);
+
+        ApiResponse response = ApiResponse.builder()
+                .message("성공적으로 로그인 되셨습니다")
+                .data(tokenResponseDto)
+                .status(200)
+                .build();
+
+        return ResponseEntity.status(200).body(response);
+    }
+
+
 
 }

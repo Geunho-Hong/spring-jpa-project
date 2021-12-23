@@ -8,6 +8,7 @@ public enum ErrorCode {
     // Common
     INVALID_INPUT_ERROR(400,"C001","Invalid Input Value"),
     SERVER_ERROR(500,"S001","Server Error"),
+    USR_LOGIN_FAIL(400,"S002","This user does not exist or has a wrong password"),
 
     // Member
     DUPLICATE_USER_ID(400,"U001","Email is Duplication"),

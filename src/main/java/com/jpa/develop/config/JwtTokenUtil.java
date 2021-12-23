@@ -1,5 +1,6 @@
 package com.jpa.develop.config;
 
+import com.jpa.develop.dto.jwt.TokenResponseDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,7 +13,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import java.io.Serializable;
 import java.util.Base64;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +27,6 @@ import java.util.List;
  * 
  */
 
-// reference : https://webfirewood.tistory.com/115
 
 @Component
 @RequiredArgsConstructor
@@ -36,8 +35,7 @@ public class JwtTokenUtil  {
     @Value("${jwt.key}")
     private String SECRET_KEY;
 
-    @Value("${jwt.validity}")
-    private String JWT_TOKEN_VALIDITY;
+    private final Long accessTokenValidity = 30 * 60 * 1000L;
 
     private final UserDetailsService userDetailsService;
 
@@ -50,22 +48,31 @@ public class JwtTokenUtil  {
      * Jwt Token 생성하기
      * @param uniqueUserPk
      * @param roles
-     * @return
+     * @return TokenResponseDto
      */
 
-    public String generateJwtToken(String uniqueUserPk, List<String> roles) {
+    public TokenResponseDto generateJwtToken(String uniqueUserPk, List<String> roles) {
 
         Claims claims = Jwts.claims().setSubject(uniqueUserPk);
         claims.put("roles" , roles);
 
         Date now = new Date();
 
-        return Jwts.builder()
+        //TODO : 추후에 refreshToken 구현 필요
+        System.out.println(SECRET_KEY);
+
+        String accessToken = Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
-                .setExpiration(new Date(now.getTime() + JWT_TOKEN_VALIDITY))
+                .setExpiration(new Date(now.getTime() + accessTokenValidity))
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
+
+        return TokenResponseDto.builder()
+                .grantType("bearer")
+                .accessToken(accessToken)
+                .tokenExpireDate(accessTokenValidity)
+                .build();
     }
 
 
