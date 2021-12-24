@@ -11,8 +11,10 @@ import com.jpa.develop.dto.user.UserResponseDto;
 import com.jpa.develop.dto.user.UserSignUpDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 
 @RestController
@@ -37,6 +39,37 @@ public class UserController {
 
         return ResponseEntity.status(201).body(response);
     }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<ApiResponse> selectUser(@PathVariable String userId) {
+
+        User findUser = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("해당 유저는 존재하지 않습니다"));
+
+        ApiResponse response = ApiResponse.builder()
+                .message(findUser.getUserId() + " 회원이 조회되었습니다")
+                .data(UserResponseDto.toUserResponse(findUser))
+                .status(201)
+                .build();
+
+        return ResponseEntity.status(201).body(response);
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<ApiResponse> deleteUser(@PathVariable String userId) {
+
+        User deleteUser = userRepository.deleteUserByUserId(userId)
+                .orElseThrow(() -> new UsernameNotFoundException("해당 유저는 존재하지 않습니다"));
+
+        ApiResponse response = ApiResponse.builder()
+                .message(deleteUser.getUserId() + " 회원이 삭제 되었습니다")
+                .data(UserResponseDto.toUserResponse(deleteUser))
+                .status(201)
+                .build();
+
+        return ResponseEntity.status(201).body(response);
+    }
+
 
     @GetMapping("/exist/userId/{userId}")
     public ResponseEntity<ApiResponse> existByUserId(@PathVariable String userId) {

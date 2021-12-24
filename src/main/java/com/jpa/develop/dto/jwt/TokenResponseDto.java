@@ -1,9 +1,6 @@
 package com.jpa.develop.dto.jwt;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * @Project     : toy-spring-jpa-pj
@@ -18,11 +15,12 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class TokenResponseDto {
 
     private String grantType;
     private String accessToken;
     private String refreshToken;
-    private Long tokenExpireDate;
+    private Long accessTokenExpireDate;
 
 }

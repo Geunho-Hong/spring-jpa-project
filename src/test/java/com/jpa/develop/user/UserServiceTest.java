@@ -15,8 +15,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.mockito.ArgumentMatchers.anyList;
 import static org.mockito.BDDMockito.given;
 
 @ExtendWith(MockitoExtension.class)
@@ -40,6 +42,7 @@ public class UserServiceTest {
                 .excludeField(f -> f.getName().equals("userNo"))
                 .excludeField(f -> f.getName().equals("regDate"))
                 .excludeField(f -> f.getName().equals("modifiedDate"))
+                .randomize(f -> f.getName().equals("roles"), () -> anyList().add("ROLE_USER"))
                 .randomize(f -> f.getName().equals("userId"),() -> "test")
                 .build();
     }
@@ -82,6 +85,19 @@ public class UserServiceTest {
         // then
         assertThatThrownBy(() -> userService.insertUser(user))
                 .isInstanceOf(PhoneNumberDuplicateException.class);
+
+    }
+
+    @Test
+    @DisplayName("UserDetails 값 테스트")
+    void loadUserByUserName() {
+
+        // given
+        User user = userRandomObject.nextObject(User.class);
+
+        // then
+        assertThatThrownBy(() -> userService.loadUserByUsername(user.getUserId()))
+                .isInstanceOf(UsernameNotFoundException.class);
 
     }
 

@@ -2,12 +2,14 @@ POST http://localhost:8080/api/user
 Content-Type: application/json
 
 {
-  "userId" : "test",
+  "userId" : "test4",
   "userName" : "홍근호",
   "userPw" : "password",
-  "userPhoneNumber" : "010-7212-8121",
+  "userPhoneNumber" : "010-7212-8124",
   "userBirthDate" : "1994-01-01"
 }
+
+
 
 
 
@@ -39,12 +41,17 @@ Content-Type: application/json
 }
 
 
+### 회원 삭제 서비스 테스트
+DELETE http://localhost:8080/api/user/test3
 
 ### 멤버 아이디 조회 서비스 테스트
-GET http://localhost:8080/api/members/exist/memberId/grayson
+GET http://localhost:8080/api/user/exist/memberId/grayson
 
 ### 멤버 핸드폰 번호 조회 서비스 테스트
-GET http://localhost:8080/api/members/exist/phone/010-7122-8114
+GET http://localhost:8080/api/user/exist/phone/010-7122-8114
 
 ### 게시글 삭제 서비스 테스트
 DELETE http://localhost:8080/api/board/1
+
+### 회원 정보 조회 서비스 테스트
+GET http://localhost:8080/api/user/test1

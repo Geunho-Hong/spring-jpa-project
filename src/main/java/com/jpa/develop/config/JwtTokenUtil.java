@@ -35,9 +35,9 @@ public class JwtTokenUtil  {
     @Value("${jwt.key}")
     private String SECRET_KEY;
 
-    private final Long accessTokenValidity = 30 * 60 * 1000L;
-
     private final UserDetailsService userDetailsService;
+    private final Long accessTokenValidity = 30 * 60 * 1000L; // 30 minute
+    private final Long refreshTokenValidity = 14 * 24 * 60 * 60 * 1000L; // 1 hour
 
     @PostConstruct
     protected void encodingSecretKey() {
@@ -58,9 +58,6 @@ public class JwtTokenUtil  {
 
         Date now = new Date();
 
-        //TODO : 추후에 refreshToken 구현 필요
-        System.out.println(SECRET_KEY);
-
         String accessToken = Jwts.builder()
                 .setClaims(claims)
                 .setIssuedAt(now)
@@ -68,10 +65,18 @@ public class JwtTokenUtil  {
                 .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
                 .compact();
 
+        String refreshToken = Jwts.builder()
+                .setIssuedAt(now)
+                .setExpiration(new Date(now.getTime() + refreshTokenValidity))
+                .signWith(SignatureAlgorithm.HS256,SECRET_KEY)
+                .compact();
+
+
         return TokenResponseDto.builder()
                 .grantType("bearer")
                 .accessToken(accessToken)
-                .tokenExpireDate(accessTokenValidity)
+                .refreshToken(refreshToken)
+                .accessTokenExpireDate(accessTokenValidity)
                 .build();
     }
 

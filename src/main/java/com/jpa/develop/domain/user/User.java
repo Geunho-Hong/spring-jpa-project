@@ -1,10 +1,7 @@
 package com.jpa.develop.domain.user;
 
 import com.jpa.develop.domain.support.BaseTimeEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +18,7 @@ import java.util.stream.Collectors;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ToString
 public class User extends BaseTimeEntity implements UserDetails {
 
     @Id
@@ -43,7 +41,7 @@ public class User extends BaseTimeEntity implements UserDetails {
     @Column(name = "usr_bt_dt")
     private LocalDate userBirthDate;
 
-    @Column
+    @Column(name= "roles")
     @ElementCollection(fetch = FetchType.LAZY)
     @Builder.Default
     private List<String> roles = new ArrayList<>();
@@ -61,7 +59,7 @@ public class User extends BaseTimeEntity implements UserDetails {
 
     @Override
     public String getPassword() {
-        return null;
+        return userPw;
     }
 
     @Override

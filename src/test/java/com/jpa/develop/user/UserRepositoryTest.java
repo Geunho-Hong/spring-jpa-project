@@ -62,7 +62,7 @@ public class UserRepositoryTest {
         // then
         assertThat(findUser.getUserNo()).isNotZero();
         assertThat(findUser.getUserId()).isEqualTo(user.getUserId());
-        assertThat(findUser.getUserName()).isEqualTo(user.getUserName());
+        assertThat(findUser.getUsername()).isEqualTo(user.getUsername());
         assertThat(findUser.getUserPhoneNumber()).isEqualTo(user.getUserPhoneNumber());
         assertThat(findUser.getUserBirthDate()).isEqualTo(user.getUserBirthDate());
 
@@ -91,7 +91,6 @@ public class UserRepositoryTest {
         boolean isExistPhoneNumber = userRepository.existsByUserPhoneNumber(user.getUserPhoneNumber());
 
         assertThat(isExistPhoneNumber).isTrue();
-
     }
 
 }
